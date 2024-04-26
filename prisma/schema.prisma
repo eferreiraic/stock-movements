@@ -25,3 +25,14 @@ model Product {
   @@index([createdAt])
   @@map("products")
 }
+
+model Place {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  name        String
+  description String?
+
+  @@index([createdAt])
+  @@map("places")
+}

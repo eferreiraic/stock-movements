@@ -11,6 +11,10 @@ export default function Navbar() {
       id: 2,
       link: 'movements',
     },
+    {
+      id: 3,
+      link: 'places',
+    },
   ];
 
   return (
