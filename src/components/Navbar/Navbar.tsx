@@ -21,7 +21,7 @@ export default function Navbar() {
     <header className="flex justify-between items-center w-full h-20 px-4 nav bg-white">
       <div>
         <h1 className="text-4xl font-signature ml-2">
-          <Link className="link-underline link-underline-black" href={'/'}>
+          <Link className="link-underline link-underline-black text-slate-500" href={'/'}>
             STKManagement
           </Link>
         </h1>
@@ -31,7 +31,7 @@ export default function Navbar() {
           {links.map(({ id, link }) => (
             <li
               key={id}
-              className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-red-800 duration-200 link-underline"
+              className="nav-links px-4 cursor-pointer capitalize font-medium text-slate-500 hover:scale-105 hover:text-red-800 duration-200 link-underline"
             >
               <Link href={link}>{link}</Link>
             </li>
