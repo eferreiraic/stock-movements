@@ -15,12 +15,12 @@ datasource db {
 
 model Product {
   id              Int      @id @default(autoincrement())
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @default(now())
   name            String
   description     String?
   quantityPerPack Int?
   quantityPacks   Int
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @default(now())
 
   @@index([createdAt])
   @@map("products")
@@ -28,11 +28,22 @@ model Product {
 
 model Place {
   id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now())
   name        String
   description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
 
   @@index([createdAt])
   @@map("places")
+}
+
+model Movement {
+  id         Int      @id @default(autoincrement())
+  place_id   Int
+  product_id Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+
+  @@index([createdAt])
+  @@map("movements")
 }
