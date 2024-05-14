@@ -1,4 +1,4 @@
-import { getAllProducts } from '@/actions/products';
+import { getAllProducts } from '@/api/products';
 import Button from '@/components/Button';
 import ProductsTable from '@/components/ProductsTable';
 import React from 'react';

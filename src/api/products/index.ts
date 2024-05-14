@@ -2,10 +2,11 @@ import type { Product } from '@prisma/client';
 import db from '../db';
 import { cache } from 'react';
 import { unstable_cache as nextCache, revalidateTag } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 export const getAllProducts = nextCache(
   cache(function getAllProducts() {
-    return db.product.findMany({ orderBy: { name: 'asc' } });
+    return db.product.findMany({ orderBy: { createdAt: 'desc' } });
   }),
   ['products'],
   {
