@@ -3,7 +3,7 @@ import React from 'react';
 import Table from '../Table';
 import { tableConfig } from '@/types/productsConfig';
 import type { Product } from '@prisma/client';
-import { deleteProductById } from './crudHelpers';
+import { deleteProductById, editProductById } from './crudHelpers';
 
 interface ProductsTableProps {
   products: Product[];
@@ -18,7 +18,7 @@ export default function ProductsTable({ products }: ProductsTableProps) {
     isConfirmed && deleteProductById(rowId);
   }
   function onEditHandler(rowId: number) {
-    console.log('edit', rowId);
+    editProductById(rowId);
   }
 
   return (

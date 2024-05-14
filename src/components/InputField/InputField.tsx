@@ -4,11 +4,13 @@ import React from 'react';
 interface InputFieldProps {
   label: string;
   type?: 'text' | 'number';
+  defaultValue?: string | number | readonly string[] | undefined;
   required?: boolean;
 }
 
 export default function InputField({
   label,
+  defaultValue,
   type = 'text',
   required = false,
 }: InputFieldProps) {
@@ -21,6 +23,7 @@ export default function InputField({
         id={label}
         name={label}
         type={type}
+        defaultValue={defaultValue}
         required={required}
         className="border border-gray-300 rounded px-3 py-2 flex-1"
         min={type === 'number' ? 0 : undefined}

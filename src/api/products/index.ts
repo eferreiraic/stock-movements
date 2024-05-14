@@ -2,7 +2,6 @@ import type { Product } from '@prisma/client';
 import db from '../db';
 import { cache } from 'react';
 import { unstable_cache as nextCache, revalidateTag } from 'next/cache';
-import { redirect } from 'next/navigation';
 
 export const getAllProducts = nextCache(
   cache(function getAllProducts() {
@@ -15,7 +14,13 @@ export const getAllProducts = nextCache(
 );
 
 export async function getProduct(id: number) {
-  return await db.product.findUnique({ where: { id } });
+  const product = await db.product.findUnique({ where: { id } });
+
+  if (!product) {
+    throw new Error('Product not found in the system!');
+  }
+
+  return product;
 }
 
 export async function createProduct({

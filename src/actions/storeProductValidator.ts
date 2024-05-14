@@ -1,14 +1,15 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { createProduct } from '../api/products';
+import { createProduct, updateProduct } from '../api/products';
 
 export async function storeProduct(_: FormData, formData: FormData) {
+  const productId = Number(formData.get('id'));
   const rawFormData = {
     name: formData.get('name')?.toString() || '',
     description: formData.get('description')?.toString() || '',
     quantityPerPack: Number(formData.get('quantityPerPack')) || 1,
-    quantityPack: Number(formData.get('quantityPack')) || 0,
+    quantityPacks: Number(formData.get('quantityPacks')) || 0,
   };
 
   const errors = [];
@@ -17,7 +18,7 @@ export async function storeProduct(_: FormData, formData: FormData) {
     errors.push('Name is required!');
   }
 
-  if (!rawFormData.quantityPack || rawFormData.quantityPack <= 0) {
+  if (!rawFormData.quantityPacks || rawFormData.quantityPacks <= 0) {
     errors.push('Quatity packs is required!');
   }
 
@@ -25,6 +26,11 @@ export async function storeProduct(_: FormData, formData: FormData) {
     return { errors };
   }
 
-  createProduct(rawFormData);
+  if (productId) {
+    updateProduct(productId, rawFormData);
+  } else {
+    createProduct(rawFormData);
+  }
+
   redirect('/products');
 }
