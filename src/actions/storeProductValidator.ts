@@ -6,8 +6,8 @@ import { createProduct, updateProduct } from '../api/products';
 export async function storeProduct(_: FormData, formData: FormData) {
   const productId = Number(formData.get('id'));
   const rawFormData = {
-    name: formData.get('name')?.toString() || '',
-    description: formData.get('description')?.toString() || '',
+    name: formData.get('name')?.toString(),
+    description: formData.get('description')?.toString(),
     quantityPerPack: Number(formData.get('quantityPerPack')) || 1,
     quantityPacks: Number(formData.get('quantityPacks')) || 0,
   };

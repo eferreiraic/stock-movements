@@ -38,12 +38,20 @@ model Place {
 }
 
 model Movement {
-  id         Int      @id @default(autoincrement())
-  place_id   Int
-  product_id Int
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now())
+  id        Int              @id @default(autoincrement())
+  placeId   Int
+  productId Int
+  quantity  Int
+  type      MovementsAllowed @default(STOCK)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @default(now())
 
   @@index([createdAt])
   @@map("movements")
+}
+
+enum MovementsAllowed {
+  STOCK
+  IN
+  OUT
 }
