@@ -1,4 +1,4 @@
-import { formatString } from '@/utils/formatString';
+import { formatCamelToTitle } from '@/utils/formatString';
 import React from 'react';
 
 interface InputFieldProps {
@@ -19,7 +19,7 @@ export default function InputField({
   return (
     <div className="flex items-center gap-2">
       <label htmlFor={label} className="capitalize">
-        {formatString(label)}:
+        {formatCamelToTitle(label)}:
       </label>
       <input
         id={label}

@@ -38,10 +38,10 @@ export default function Table<T>({
           return (
             <tr key={row.id ?? index}>
               {/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
-              {tableConfig.map(({ column }: any) => {
+              {tableConfig.map(({ column, compute }: any) => {
                 return (
                   <td key={column} className="px-6 py-4 whitespace-nowrap">
-                    {row[column] ?? '-'}
+                    {compute ? compute(row) : row[column] ?? '-'}
                   </td>
                 );
               })}

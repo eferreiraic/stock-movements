@@ -1,6 +1,6 @@
 import type { Knex } from 'knex';
 
-const MovementsAllowed = ['STOCK', 'IN', 'OUT'];
+const MovementsAllowed = ['STOCK', 'OUT'];
 
 export async function up(knex: Knex): Promise<void> {
   await knex.raw(

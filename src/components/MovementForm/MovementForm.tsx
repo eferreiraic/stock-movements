@@ -22,7 +22,6 @@ interface MovementFormProps {
 
 const types = [
   { value: MovementsAllowed.STOCK, label: 'Stock' },
-  { value: MovementsAllowed.IN, label: 'In' },
   { value: MovementsAllowed.OUT, label: 'Out' },
 ];
 
