@@ -2,7 +2,7 @@
 import React from 'react';
 import Table from '../Table';
 import { tableConfig } from '@/types/movementsConfig';
-import { deleteMovementById, editMovementById } from './crudHelpers';
+import { deleteMovementById } from './crudHelpers';
 import type { Movement } from '@prisma/client';
 
 interface MovementsTableProps {
@@ -17,17 +17,11 @@ export default function MovementsTable({ movements }: MovementsTableProps) {
 
     isConfirmed && deleteMovementById(rowId);
   }
-  function onEditHandler(rowId: number) {
-    editMovementById(rowId);
-  }
-
-  console.log('movements', movements);
 
   return (
     <Table
       items={movements}
       tableConfig={tableConfig}
-      onEdit={(rowId) => onEditHandler(rowId)}
       onDelete={(rowId) => onDeleteHandler(rowId)}
     />
   );

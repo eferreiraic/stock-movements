@@ -1,4 +1,3 @@
-// import type { Movement } from '@prisma/client';
 import db from '../db';
 import { cache } from 'react';
 import { unstable_cache as nextCache, revalidateTag } from 'next/cache';
@@ -6,7 +5,6 @@ import { MovementsAllowed, type Movement } from '@prisma/client';
 
 export const getAllMovements = nextCache(
   cache(function getAllMovements() {
-    // return db.movement.findMany({ orderBy: { createdAt: 'desc' } });
     return db.$queryRaw`SELECT movements.*, (products.name) as "productName", (places.name) as "placeName" from movements
     LEFT JOIN places ON movements."placeId" = places.id
     LEFT JOIN products ON movements."productId" = products.id
@@ -32,21 +30,11 @@ export async function createMovement({
   placeId,
   productId,
   quantity,
+  type,
 }: Partial<Movement>) {
-  const res = await db.movement.create({
-    data: {
-      placeId: placeId ?? 0,
-      productId: productId ?? 0,
-      quantity: quantity ?? 0,
-      type: MovementsAllowed.STOCK,
-    },
-  });
-  revalidateTag('movements');
-  return res;
-}
+  const res = db.$queryRaw`INSERT INTO movements ("placeId", "productId", quantity, type)
+  VALUES (${placeId}, ${productId}, ${quantity}, ${type})`;
 
-export async function updateMovement(id: number, data: Partial<Movement>) {
-  const res = await db.movement.update({ where: { id }, data });
   revalidateTag('movements');
   return res;
 }

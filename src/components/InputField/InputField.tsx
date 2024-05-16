@@ -6,6 +6,7 @@ interface InputFieldProps {
   type?: 'text' | 'number';
   defaultValue?: string | number | readonly string[] | undefined;
   required?: boolean;
+  disabled?: boolean;
 }
 
 export default function InputField({
@@ -13,6 +14,7 @@ export default function InputField({
   defaultValue,
   type = 'text',
   required = false,
+  disabled,
 }: InputFieldProps) {
   return (
     <div className="flex items-center gap-2">
@@ -27,6 +29,7 @@ export default function InputField({
         required={required}
         className="border border-gray-300 rounded px-3 py-2 flex-1"
         min={type === 'number' ? 0 : undefined}
+        disabled={disabled}
       />
     </div>
   );

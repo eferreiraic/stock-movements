@@ -51,12 +51,14 @@ export default function MovementForm({
         <SelectField
           required
           label="place"
+          id="placeId"
           options={placesParsed}
           defaultValue={movement?.placeId}
         />
         <SelectField
           required
           label="product"
+          id="productId"
           options={productsParsed}
           defaultValue={movement?.productId}
         />

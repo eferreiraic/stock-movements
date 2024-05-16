@@ -1,19 +1,36 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { createMovement, updateMovement } from '../api/movements';
+import { createMovement } from '../api/movements';
 import { MovementsAllowed } from '@prisma/client';
+import { getProduct, updateProduct } from '@/api/products';
 
 export async function storeMovement(_: FormData, formData: FormData) {
-  const movementId = Number(formData.get('id'));
   const rawFormData = {
     placeId: Number(formData.get('placeId')),
     productId: Number(formData.get('productId')),
     type: formData.get('typeOfMovement') as MovementsAllowed,
-    quantity: Number(formData.get('quantityPacks')) || 0,
+    quantity: Number(formData.get('quantity')) || 0,
   };
 
+  const product = await getProduct(rawFormData.productId);
+
   const errors = [];
+  if (!product) {
+    errors.push('Product not found!');
+  }
+
+  if (product.quantityPacks < rawFormData.quantity) {
+    errors.push('Not enough packs!');
+  }
+
+  if (!rawFormData.placeId) {
+    errors.push('Place is required!');
+  }
+
+  if (!rawFormData.productId) {
+    errors.push('Product is required!');
+  }
 
   if (!rawFormData.type) {
     errors.push(
@@ -29,11 +46,11 @@ export async function storeMovement(_: FormData, formData: FormData) {
     return { errors };
   }
 
-  if (movementId) {
-    updateMovement(movementId, rawFormData);
-  } else {
-    createMovement(rawFormData);
-  }
+  await createMovement(rawFormData);
+
+  await updateProduct(rawFormData.productId, {
+    quantityPacks: product.quantityPacks - rawFormData.quantity,
+  });
 
   redirect('/movements');
 }

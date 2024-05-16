@@ -3,6 +3,7 @@ import React from 'react';
 
 interface SelectFieldProps {
   label: string;
+  id?: string;
   required?: boolean;
   defaultValue?: string | number | undefined;
   options: { value: string | number; label: string }[];
@@ -10,6 +11,7 @@ interface SelectFieldProps {
 
 export default function SelectField({
   label,
+  id,
   required = false,
   defaultValue,
   options,
@@ -21,7 +23,8 @@ export default function SelectField({
       </label>
 
       <select
-        id="countries"
+        id={id || label}
+        name={id || label}
         required={required}
         className="border border-gray-300 rounded px-3 py-2 flex-1"
         defaultValue={defaultValue}

@@ -40,6 +40,7 @@ export default function ProductForm({ action, product }: ProductFormProps) {
           label="quantityPacks"
           type="number"
           defaultValue={product?.quantityPacks}
+          disabled={!!product}
         />
 
         <FormButtons

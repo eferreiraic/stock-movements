@@ -2,6 +2,8 @@
 
 import { redirect } from 'next/navigation';
 import { createProduct, updateProduct } from '../api/products';
+import { createMovement } from '@/api/movements';
+import { MovementsAllowed } from '@prisma/client';
 
 export async function storeProduct(_: FormData, formData: FormData) {
   const productId = Number(formData.get('id'));
@@ -27,9 +29,16 @@ export async function storeProduct(_: FormData, formData: FormData) {
   }
 
   if (productId) {
-    updateProduct(productId, rawFormData);
+    await updateProduct(productId, rawFormData);
   } else {
-    createProduct(rawFormData);
+    const res = await createProduct(rawFormData);
+
+    await createMovement({
+      placeId: 4,
+      productId: res.id,
+      quantity: rawFormData.quantityPacks,
+      type: MovementsAllowed.STOCK,
+    });
   }
 
   redirect('/products');

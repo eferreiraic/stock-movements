@@ -6,7 +6,7 @@ interface TableProps<T> {
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   tableConfig: any;
   onDelete: (id: number) => void;
-  onEdit: (id: number) => void;
+  onEdit?: (id: number) => void;
 }
 
 export default function Table<T>({
@@ -47,13 +47,15 @@ export default function Table<T>({
               })}
 
               <td className="px-6 py-4 whitespace-nowrap text-right">
-                <button
-                  type="button"
-                  className="px-4 py-2 font-medium text-white bg-gray-600 rounded-md hover:bg-gray-500 focus:outline-none focus:shadow-outline-blue active:bg-gray-600 transition duration-150 ease-in-out"
-                  onClick={() => onEdit(row.id)}
-                >
-                  Edit
-                </button>
+                {onEdit && (
+                  <button
+                    type="button"
+                    className="px-4 py-2 font-medium text-white bg-gray-600 rounded-md hover:bg-gray-500 focus:outline-none focus:shadow-outline-blue active:bg-gray-600 transition duration-150 ease-in-out"
+                    onClick={() => onEdit(row.id)}
+                  >
+                    Edit
+                  </button>
+                )}
                 <button
                   type="button"
                   className="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out"
