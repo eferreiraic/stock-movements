@@ -6,7 +6,11 @@ import { MovementsAllowed, type Movement } from '@prisma/client';
 
 export const getAllMovements = nextCache(
   cache(function getAllMovements() {
-    return db.movement.findMany({ orderBy: { createdAt: 'desc' } });
+    // return db.movement.findMany({ orderBy: { createdAt: 'desc' } });
+    return db.$queryRaw`SELECT movements.*, (products.name) as "productName", (places.name) as "placeName" from movements
+    LEFT JOIN places ON movements."placeId" = places.id
+    LEFT JOIN products ON movements."productId" = products.id
+    ORDER BY "createdAt" DESC`;
   }),
   ['movements'],
   {

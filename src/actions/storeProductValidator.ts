@@ -19,7 +19,7 @@ export async function storeProduct(_: FormData, formData: FormData) {
   }
 
   if (!rawFormData.quantityPacks || rawFormData.quantityPacks <= 0) {
-    errors.push('Quatity packs is required!');
+    errors.push('Quantity packs is required!');
   }
 
   if (errors.length > 0) {

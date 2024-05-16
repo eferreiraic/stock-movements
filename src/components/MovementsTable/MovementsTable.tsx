@@ -21,6 +21,8 @@ export default function MovementsTable({ movements }: MovementsTableProps) {
     editMovementById(rowId);
   }
 
+  console.log('movements', movements);
+
   return (
     <Table
       items={movements}

@@ -1,7 +1,17 @@
 import type { Movement } from '@prisma/client';
 import type { TableConfig } from './tableConfig';
 
-export const tableConfig: TableConfig<Movement, keyof Movement>[] = [
-  { column: 'name', columnHeader: 'name' },
-  { column: 'description', columnHeader: 'description' },
+type MovementColumns = Movement & {
+  placeName: string;
+  productName: string;
+};
+
+export const tableConfig: TableConfig<
+  MovementColumns,
+  keyof MovementColumns
+>[] = [
+  { column: 'placeName', columnHeader: 'place' },
+  { column: 'productName', columnHeader: 'product' },
+  { column: 'quantity', columnHeader: 'quantity' },
+  { column: 'type', columnHeader: 'Type of Movement' },
 ];
