@@ -5,9 +5,9 @@ import { getProduct, updateProduct } from '@/api/products';
 import { MovementsAllowed } from '@prisma/client';
 
 export async function deleteMovementById(id: number) {
-  const movementExists = await getMovement(id);
-  const product = await getProduct(id);
-  if (!movementExists) {
+  const movement = await getMovement(id);
+  const product = await getProduct(movement.productId);
+  if (!movement) {
     throw new Error('Movement not found in the system!');
   }
 
@@ -17,13 +17,13 @@ export async function deleteMovementById(id: number) {
 
   const res = await deleteMovement(id);
   if (res) {
-    if (movementExists.type === MovementsAllowed.OUT) {
+    if (movement.type === MovementsAllowed.OUT) {
       updateProduct(product.id, {
-        quantityPacks: product.quantityPacks + movementExists.quantity,
+        quantityPacks: product.quantityPacks + movement.quantity,
       });
-    } else if (movementExists.type === MovementsAllowed.STOCK) {
+    } else if (movement.type === MovementsAllowed.STOCK) {
       updateProduct(product.id, {
-        quantityPacks: product.quantityPacks - movementExists.quantity,
+        quantityPacks: product.quantityPacks - movement.quantity,
       });
     }
   }
