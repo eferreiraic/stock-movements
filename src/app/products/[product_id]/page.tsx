@@ -9,7 +9,7 @@ interface ProductProps {
   productId: number;
 }
 
-async function Product({ productId }: ProductProps) {
+async function Product({ productId }: Readonly<ProductProps>) {
   const product = await getProduct(productId);
   return (
     <div className="flex flex-col w-full">
@@ -23,7 +23,9 @@ async function Product({ productId }: ProductProps) {
   );
 }
 
-export default function ProductDetails({ params }: ProductDetailsProps) {
+export default function ProductDetails({
+  params,
+}: Readonly<ProductDetailsProps>) {
   return (
     <Suspense fallback={<LoadingPage />}>
       <Product productId={Number(params?.product_id) ?? -1} />
