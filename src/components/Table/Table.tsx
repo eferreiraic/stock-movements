@@ -14,7 +14,7 @@ export default function Table<T>({
   tableConfig,
   onDelete,
   onEdit,
-}: TableProps<T>) {
+}: Readonly<TableProps<T>>) {
   return (
     <table className="min-w-full divide-y divide-gray-200">
       <thead>

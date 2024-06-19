@@ -6,7 +6,7 @@ interface ButtonProps {
   to: string;
 }
 
-export default function Button({ label, to }: ButtonProps) {
+export default function Button({ label, to }: Readonly<ButtonProps>) {
   return (
     <Link href={to}>
       <button

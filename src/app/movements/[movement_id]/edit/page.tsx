@@ -13,7 +13,7 @@ interface MovementProps {
   movementId: number;
 }
 
-async function MovementEditForm({ movementId }: MovementProps) {
+async function MovementEditForm({ movementId }: Readonly<MovementProps>) {
   const movement = await getMovement(movementId);
   const products = await getAllProducts();
   const places = await getAllPlaces();
@@ -28,7 +28,9 @@ async function MovementEditForm({ movementId }: MovementProps) {
   );
 }
 
-export default function MovementEdit({ params }: MovementDetailsProps) {
+export default function MovementEdit({
+  params,
+}: Readonly<MovementDetailsProps>) {
   return (
     <Suspense fallback={<LoadingPage />}>
       <MovementEditForm movementId={Number(params?.movement_id ?? -1)} />

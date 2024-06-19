@@ -13,7 +13,7 @@ export default function FormButtons({
   loadingMessage,
   redirectTo,
   errors,
-}: FormButtonsProps) {
+}: Readonly<FormButtonsProps>) {
   const status = useFormStatus();
 
   return (

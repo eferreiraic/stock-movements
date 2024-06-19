@@ -9,7 +9,7 @@ interface PlacesTableProps {
   places: Place[];
 }
 
-export default function PlacesTable({ places }: PlacesTableProps) {
+export default function PlacesTable({ places }: Readonly<PlacesTableProps>) {
   function onDeleteHandler(rowId: number) {
     const isConfirmed = confirm(
       `You're about to delete this item! Do you want to proceed?`

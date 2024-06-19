@@ -9,7 +9,7 @@ interface MovementProps {
   movementId: number;
 }
 
-async function Movement({ movementId }: MovementProps) {
+async function Movement({ movementId }: Readonly<MovementProps>) {
   const movement = await getMovement(movementId);
 
   return (
@@ -24,7 +24,9 @@ async function Movement({ movementId }: MovementProps) {
   );
 }
 
-export default function MovementDetails({ params }: MovementDetailsProps) {
+export default function MovementDetails({
+  params,
+}: Readonly<MovementDetailsProps>) {
   return (
     <Suspense fallback={<LoadingPage />}>
       <Movement movementId={Number(params?.movement_id) ?? -1} />

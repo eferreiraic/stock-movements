@@ -7,7 +7,7 @@ export async function storePlace(_: FormData, formData: FormData) {
   const placeId = Number(formData.get('id'));
   const rawFormData = {
     name: formData.get('name')?.toString(),
-    description: formData.get('description')?.toString() || null,
+    description: formData.get('description')?.toString() ?? null,
   };
 
   const errors = [];

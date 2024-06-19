@@ -15,7 +15,7 @@ export default function SelectField({
   required = false,
   defaultValue,
   options,
-}: SelectFieldProps) {
+}: Readonly<SelectFieldProps>) {
   return (
     <div className="flex items-center gap-2">
       <label htmlFor={label} className="capitalize">
@@ -23,8 +23,8 @@ export default function SelectField({
       </label>
 
       <select
-        id={id || label}
-        name={id || label}
+        id={id ?? label}
+        name={id ?? label}
         required={required}
         className="border border-gray-300 rounded px-3 py-2 flex-1"
         defaultValue={defaultValue}

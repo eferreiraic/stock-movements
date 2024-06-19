@@ -9,7 +9,9 @@ interface MovementsTableProps {
   movements: Movement[];
 }
 
-export default function MovementsTable({ movements }: MovementsTableProps) {
+export default function MovementsTable({
+  movements,
+}: Readonly<MovementsTableProps>) {
   function onDeleteHandler(rowId: number) {
     const isConfirmed = confirm(
       `You're about to delete this movement! Do you want to proceed?`

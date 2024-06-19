@@ -30,7 +30,7 @@ export default function MovementForm({
   movement,
   places,
   products,
-}: MovementFormProps) {
+}: Readonly<MovementFormProps>) {
   const [formState, formAction] = useFormState(action, { errors: [] });
   const placesParsed = formatToSelectElem(places);
   const productsParsed = formatToSelectElem(products);

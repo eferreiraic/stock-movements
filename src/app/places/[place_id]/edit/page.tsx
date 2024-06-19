@@ -11,12 +11,12 @@ interface PlaceProps {
   placeId: number;
 }
 
-async function PlaceEditForm({ placeId }: PlaceProps) {
+async function PlaceEditForm({ placeId }: Readonly<PlaceProps>) {
   const place = await getPlace(placeId);
   return <PlaceForm action={storePlace} place={place} />;
 }
 
-export default function PlaceEdit({ params }: PlaceDetailsProps) {
+export default function PlaceEdit({ params }: Readonly<PlaceDetailsProps>) {
   return (
     <Suspense fallback={<LoadingPage />}>
       <PlaceEditForm placeId={Number(params?.place_id) ?? -1} />

@@ -15,7 +15,7 @@ export default function InputField({
   type = 'text',
   required = false,
   disabled,
-}: InputFieldProps) {
+}: Readonly<InputFieldProps>) {
   return (
     <div className="flex items-center gap-2">
       <label htmlFor={label} className="capitalize">

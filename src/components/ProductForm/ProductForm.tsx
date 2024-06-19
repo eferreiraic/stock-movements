@@ -11,7 +11,10 @@ interface ProductFormProps {
   product?: Product;
 }
 
-export default function ProductForm({ action, product }: ProductFormProps) {
+export default function ProductForm({
+  action,
+  product,
+}: Readonly<ProductFormProps>) {
   const [formState, formAction] = useFormState(action, { errors: [] });
 
   return (

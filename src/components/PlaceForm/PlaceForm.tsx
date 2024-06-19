@@ -11,7 +11,7 @@ interface PlaceFormProps {
   place?: Place;
 }
 
-export default function PlaceForm({ action, place }: PlaceFormProps) {
+export default function PlaceForm({ action, place }: Readonly<PlaceFormProps>) {
   const [formState, formAction] = useFormState(action, { errors: [] });
 
   return (

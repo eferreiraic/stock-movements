@@ -11,12 +11,12 @@ interface ProductProps {
   productId: number;
 }
 
-async function ProductEditForm({ productId }: ProductProps) {
+async function ProductEditForm({ productId }: Readonly<ProductProps>) {
   const product = await getProduct(productId);
   return <ProductForm action={storeProduct} product={product} />;
 }
 
-export default function ProductEdit({ params }: ProductDetailsProps) {
+export default function ProductEdit({ params }: Readonly<ProductDetailsProps>) {
   return (
     <Suspense fallback={<LoadingPage />}>
       <ProductEditForm productId={Number(params?.product_id) ?? -1} />

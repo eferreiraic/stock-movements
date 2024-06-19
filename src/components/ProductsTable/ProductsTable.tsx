@@ -9,7 +9,9 @@ interface ProductsTableProps {
   products: Product[];
 }
 
-export default function ProductsTable({ products }: ProductsTableProps) {
+export default function ProductsTable({
+  products,
+}: Readonly<ProductsTableProps>) {
   function onDeleteHandler(rowId: number) {
     const isConfirmed = confirm(
       `You're about to delete this item! Do you want to proceed?`
