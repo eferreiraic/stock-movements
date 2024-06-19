@@ -19,7 +19,7 @@ async function PlaceEditForm({ placeId }: Readonly<PlaceProps>) {
 export default function PlaceEdit({ params }: Readonly<PlaceDetailsProps>) {
   return (
     <Suspense fallback={<LoadingPage />}>
-      <PlaceEditForm placeId={Number(params?.place_id) ?? -1} />
+      <PlaceEditForm placeId={Number(params?.place_id ?? -1)} />
     </Suspense>
   );
 }

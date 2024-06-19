@@ -28,7 +28,7 @@ export default function ProductDetails({
 }: Readonly<ProductDetailsProps>) {
   return (
     <Suspense fallback={<LoadingPage />}>
-      <Product productId={Number(params?.product_id) ?? -1} />
+      <Product productId={Number(params?.product_id ?? -1)} />
     </Suspense>
   );
 }
