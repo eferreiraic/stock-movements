@@ -4,7 +4,7 @@ import React from 'react';
 interface InputFieldProps {
   label: string;
   type?: 'text' | 'number';
-  defaultValue?: string | number | readonly string[] | undefined;
+  defaultValue?: string | number | readonly string[];
   required?: boolean;
   disabled?: boolean;
 }

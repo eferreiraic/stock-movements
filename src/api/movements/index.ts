@@ -1,7 +1,7 @@
 import db from '../db';
 import { cache } from 'react';
 import { unstable_cache as nextCache, revalidateTag } from 'next/cache';
-import { MovementsAllowed, type Movement } from '@prisma/client';
+import type { Movement } from '@prisma/client';
 
 export const getAllMovements = nextCache(
   cache(function getAllMovements() {

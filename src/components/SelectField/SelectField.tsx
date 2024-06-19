@@ -5,7 +5,7 @@ interface SelectFieldProps {
   label: string;
   id?: string;
   required?: boolean;
-  defaultValue?: string | number | undefined;
+  defaultValue?: string | number;
   options: { value: string | number; label: string }[];
 }
 
