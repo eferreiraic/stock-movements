@@ -19,7 +19,7 @@ async function ProductEditForm({ productId }: ProductProps) {
 export default function ProductEdit({ params }: ProductDetailsProps) {
   return (
     <Suspense fallback={<LoadingPage />}>
-      <ProductEditForm productId={Number(params.product_id) ?? -1} />
+      <ProductEditForm productId={Number(params?.product_id) ?? -1} />
     </Suspense>
   );
 }

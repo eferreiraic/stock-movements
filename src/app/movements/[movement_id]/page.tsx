@@ -27,7 +27,7 @@ async function Movement({ movementId }: MovementProps) {
 export default function MovementDetails({ params }: MovementDetailsProps) {
   return (
     <Suspense fallback={<LoadingPage />}>
-      <Movement movementId={Number(params.movement_id) ?? -1} />
+      <Movement movementId={Number(params?.movement_id) ?? -1} />
     </Suspense>
   );
 }

@@ -26,7 +26,7 @@ async function Product({ productId }: ProductProps) {
 export default function ProductDetails({ params }: ProductDetailsProps) {
   return (
     <Suspense fallback={<LoadingPage />}>
-      <Product productId={Number(params.product_id) ?? -1} />
+      <Product productId={Number(params?.product_id) ?? -1} />
     </Suspense>
   );
 }

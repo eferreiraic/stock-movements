@@ -31,7 +31,7 @@ async function MovementEditForm({ movementId }: MovementProps) {
 export default function MovementEdit({ params }: MovementDetailsProps) {
   return (
     <Suspense fallback={<LoadingPage />}>
-      <MovementEditForm movementId={Number(params?.movement_id ?? '-1')} />
+      <MovementEditForm movementId={Number(params?.movement_id) ?? -1} />
     </Suspense>
   );
 }
